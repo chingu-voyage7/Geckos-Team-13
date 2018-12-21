@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navigation from './Components/Navigation';
+import axios from 'axios';
 
 class App extends Component {
+  state = { 
+    user: null, 
+    loading: true
+  };
+  
+  componentDidMount(){
+    axios.get('/user').then(({ data }) => {
+      this.setState({ user: data, loading: false });
+      console.log(data);
+    });
+  }
   render() {
     return (
       <div className="App">
+        <Navigation />
         <header className="App-header">
+          
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
