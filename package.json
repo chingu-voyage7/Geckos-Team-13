@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=express:* nodemon ./bin/www"
+    "dev": "concurrently \"DEBUG=express:* nodemon ./bin/www\" \"cd client && yarn start\""
   },
   "dependencies": {
     "acorn": "^6.0.4",
+    "concurrently": "^4.1.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",

@@ -25,7 +25,7 @@ class Navigation extends Component {
         <nav className="navbar navbar-dark bg-dark">
             <a className="navbar-brand mr-auto" href="/"><i className="fas fa-gavel" style={{fontSize:"1em"}}>  </i>&nbsp;Easy Auction</a>
             {this.props.user ? 
-            <div class="btn-group" role="group" aria-label="User Controls">
+            <div className="btn-group" role="group" aria-label="User Controls">
               <a className="btn btn-outline-info" href="/logout">{this.props.user.displayName}</a>
               <a className="btn btn-outline-info" href="/logout">Logout</a>
             </div>: 
