@@ -12,14 +12,17 @@ class App extends Component {
   
   componentDidMount(){
     axios.get('/user').then(({ data }) => {
-      this.setState({ user: data, loading: false });
-      console.log(data);
+      if(data.id){
+        this.setState({ user: data, loading: false });
+        console.log(data);
+        console.log(this.state);
+      }
     });
   }
   render() {
     return (
       <div className="App">
-        <Navigation />
+        <Navigation user={this.state.user}/>
         <header className="App-header">
           
           <img src={logo} className="App-logo" alt="logo" />
