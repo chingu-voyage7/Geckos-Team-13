@@ -1,0 +1,14 @@
+#userThumb{
+    padding-left: 10px;
+    font-size: 1vw;
+}
+
+#userThumb img{
+    max-width: 80px;
+    border-radius: 50%;
+}
+
+#userThumb caption{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
