@@ -23,7 +23,7 @@ class Navigation extends Component {
   
   render() {
     return(
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar navbar-dark bg-dark" id="mainNav">
             <a className="navbar-brand mr-auto" href="/"><i className="fas fa-gavel" style={{fontSize:"1em"}}>  </i>&nbsp;Easy Auction</a>
             {this.props.user ? 
             <div className="btn-group d-none d-md-block" role="group" aria-label="User Controls" id="userControls">
