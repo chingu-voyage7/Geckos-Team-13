@@ -1,0 +1,40 @@
+#mainNav{
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.6);
+}
+
+.navbar-brand{
+    font-size: 6.25vw !important;
+    text-shadow: rgb(43, 191, 255) 1px 0px 0px, rgb(43, 191, 255) 0.540302px 0.841471px 0px, rgb(43, 191, 255) -0.416147px 0.909297px 0px, rgb(43, 191, 255) -0.989992px 0.14112px 0px, rgb(43, 191, 255) -0.653644px -0.756802px 0px, rgb(43, 191, 255) 0.283662px -0.958924px 0px, rgb(43, 191, 255) 0.96017px -0.279415px 0px;
+}
+
+#userControls{
+    position: relative;
+    line-height: 0px;
+    margin-right: 2%;
+}
+
+#userThumb{
+    position: relative;
+    margin-right: 2.5%;
+    font-size: 1rem;
+}
+
+#userThumb img{
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+#userThumb caption{
+    position: relative;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+@media only screen and (min-width: 768px){
+    .navbar-brand{
+        font-size: 5vw !important;
+    }
+}

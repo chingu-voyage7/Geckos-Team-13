@@ -1,3 +1,13 @@
+*{
+  font-family: 'Staatliches', cursive;
+  font-size: 1.5em;
+}
+
+body{
+  background-image: url('/img/tic-tac-toe.png');
+  background-repeat: repeat;
+}
+
 .App {
   text-align: center;
 }
@@ -8,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgba(5,15,20,0.7);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

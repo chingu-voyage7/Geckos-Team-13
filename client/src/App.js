@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Navigation } from './Components/Navigation/';
+import { Footer } from './Components/Footer/';
+import axios from 'axios';
 
 class App extends Component {
+  state = { 
+    user: null, 
+    loading: true
+  };
+  
+  componentDidMount(){
+    axios.get('/user').then(({ data }) => {
+      if(data.id){
+        this.setState({ user: data, loading: false });
+        console.log(data);
+        console.log(this.state);
+      }
+    });
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navigation user={this.state.user}/>
+        <div className="container-fluid">
+          <div className="display-4 text-center">
+            Current Auctions
+          </div>
+          <header className="App-header">
+            Placeholder for Auctions Flexbox
+          </header>
+        </div>
+        <Footer/>
       </div>
     );
   }
