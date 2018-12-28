@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Navigation from './Components/Navigation';
+import { Navigation } from './Components/Navigation/';
+import { Footer } from './Components/Footer/';
 import axios from 'axios';
 
 class App extends Component {
@@ -40,7 +41,7 @@ class App extends Component {
             </a>
           </header>
         </div>
-        
+        <Footer/>
       </div>
     );
   }
