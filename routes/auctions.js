@@ -24,5 +24,19 @@ router.get('/myauctions', secured(), (req, res, next) => {
 });
 
 /* POST a new auction for a User's auction */
+router.post('/auctions', (req, res, next) => {
+  // We'll spit the data back out for now until we setup the controller
+  const { formData } = req.body;
+  try {
+    res.json(
+      {
+        message: 'This should return all the auctions from all users',
+        data: formData,
+      },
+    );
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
