@@ -1,4 +1,4 @@
-/* EasyAuction Express App  */
+/* EasyAuction Express App - This is the back-end API for our React based client */
 
 // createError was replaced by the error handler at the end of app.js
 const express = require('express');
@@ -19,6 +19,8 @@ const userInViews = require('./lib/middleware/userInViews');
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const auctionsRouter = require('./routes/auctions');
+
 
 // Configure Passport and create a new Auth0 instance
 const strategy = new Auth0Strategy(
@@ -87,6 +89,7 @@ app.use(userInViews());
 app.use('/', authRouter);
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', auctionsRouter);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
