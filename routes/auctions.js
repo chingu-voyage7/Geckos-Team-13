@@ -10,7 +10,11 @@ const router = express.Router();
 /* GET Auctions, this is an unsecured endpoint */
 router.get('/auctions', (req, res, next) => {
   try {
-    res.json({ message: 'This should return all the auctions from all users' });
+    db.Auction.find().then((dbData) => {
+      res.json(
+        { data: dbData },
+      );
+    });
   } catch (err) {
     next(err);
   }
@@ -20,7 +24,11 @@ router.get('/auctions', (req, res, next) => {
 router.get('/myauctions', secured(), (req, res, next) => {
   try {
     const { _raw, _json, ...userProfile } = req.user;
-    res.json({ message: `This should return all the auctions from ${userProfile.id}` });
+    db.Auction.find({ userID: userProfile.id }).then((dbData) =>{
+      res.json(
+        { data: dbData },
+      );
+    });
   } catch (err) {
     next(err);
   }
