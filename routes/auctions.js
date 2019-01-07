@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('../models/Auction');
 const secured = require('../lib/middleware/secured');
 // TODO - Import Data controller for auctions
 
@@ -28,11 +29,13 @@ router.post('/auctions', (req, res, next) => {
   // We'll spit the data back out for now until we setup the controller
   const { formData } = req.body;
   try {
-    res.json(
-      {
-        message: 'This should return all the auctions from all users',
-        data: formData,
-      },
+    db.Auction.create(formData).then(
+      res.json(
+        {
+          message: 'This should return all the auctions from all users',
+          data: formData,
+        },
+      ),
     );
   } catch (err) {
     next(err);
