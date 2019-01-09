@@ -19,7 +19,7 @@ router.get('/auctions', (req, res, next) => {
     next(err);
   }
 });
-
+/* This will populate some auction cards */
 /* GET a User's Acutions - this is a secured endpoint */
 router.get('/myauctions', secured(), (req, res, next) => {
   try {
