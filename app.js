@@ -1,4 +1,4 @@
-/* EasyAuction Express App  */
+/* EasyAuction Express App - This is the back-end API for our React based client */
 
 // createError was replaced by the error handler at the end of app.js
 const express = require('express');
@@ -10,6 +10,7 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const cors = require('cors');
+const mongoose = require('mongoose');
 // Load ENV variables
 require('dotenv').config();
 
@@ -19,6 +20,8 @@ const userInViews = require('./lib/middleware/userInViews');
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const auctionsRouter = require('./routes/auctions');
+
 
 // Configure Passport and create a new Auth0 instance
 const strategy = new Auth0Strategy(
@@ -47,9 +50,11 @@ app.use(cors());
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade'); // Can replace with pug
+app.set('view engine', 'pug'); // Can replace with pug
 
 app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // express-session setup
@@ -87,6 +92,7 @@ app.use(userInViews());
 app.use('/', authRouter);
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', auctionsRouter);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -120,5 +126,12 @@ app.use((err, req, res, next) => {
 });
 
 // Initialize Mongoose here
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/easyAuctionDev';
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 module.exports = app;
