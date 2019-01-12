@@ -1,3 +1,4 @@
+
 const db = require('./models/Auction');
 // const sum = require('./sum');
 
@@ -12,9 +13,4 @@ test('Verify that Mongo is connected to the test suite', async () => {
   await mongoose.connect(MONGODB_URI, options).then(
     async () => {expect(err).toBeFalsy();}
   );
-});
-
-
-test('Dummy Test', () => {
-  expect(1).toBe(1);
 });

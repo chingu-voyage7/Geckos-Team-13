@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const AuctionSchema = new Schema({
   id: {
@@ -32,11 +33,14 @@ const AuctionSchema = new Schema({
   minimumBid: {
     type: Number,
   },
+  images: {
+    type: [String],
+  },
 });
 
 // Init the User model schema
-var Auction = mongoose.model("Auction", AuctionSchema);
+const Auction = mongoose.model('Auction', AuctionSchema);
 
 module.exports = {
-    Auction: Auction
+  Auction,
 };
