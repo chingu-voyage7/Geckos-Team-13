@@ -33,9 +33,6 @@ const AuctionSchema = new Schema({
   minimumBid: {
     type: Number,
   },
-  images: {
-    type: [String],
-  },
 });
 
 // Init the User model schema

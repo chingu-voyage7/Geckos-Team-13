@@ -42,7 +42,7 @@ router.post('/auctions', (req, res, next) => {
     db.Auction.create(formData).then((dbData) => {
       res.json(
         {
-          message: 'This should return all the auctions from all users',
+          message: 'This should return all the auctions data from the post',
           data: dbData,
         },
       );
