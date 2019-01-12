@@ -3,13 +3,19 @@ import React, { Component } from 'react';
 class AuctionCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        id: "99999",
-        title: "iPhone X",
-        image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6009/6009875_sd.jpg;maxHeight=1000;maxWidth=1000",
-        description:"The most overpriced phone money can buy",
-        currentBid:"$999.99",
-        countdown: "1:30",
+    // We'll remove this once we start getting some data in the component
+    if(!props){
+        this.state = {
+            id: "99999",
+            title: "iPhone X",
+            image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6009/6009875_sd.jpg;maxHeight=1000;maxWidth=1000",
+            description:"The most overpriced phone money can buy",
+            currentBid:"$999.99",
+            countdown: "1:30",
+        }
+    }
+    else{
+        this.state = props;
     }
   }
 
