@@ -27,11 +27,15 @@ const AuctionSchema = new Schema({
     type: Date,
     required: true,
   },
-  images: {
-    type: [String],
-  },
   minimumBid: {
     type: Number,
+  },
+  views: {
+    type: Number,
+    default: 0,
+  },
+  images: {
+    type: [String],
   },
 });
 

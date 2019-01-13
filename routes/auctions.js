@@ -24,7 +24,7 @@ router.get('/auctions', (req, res, next) => {
 router.get('/myauctions', secured(), (req, res, next) => {
   try {
     const { _raw, _json, ...userProfile } = req.user;
-    db.Auction.find({ userID: userProfile.id }).then((dbData) =>{
+    db.Auction.find({ userID: userProfile.id }).then((dbData) => {
       res.json(
         { data: dbData },
       );
@@ -48,7 +48,30 @@ router.post('/auctions', (req, res, next) => {
       );
     });
   } catch (err) {
-    console.log(err.message);
+    debug(err.message);
+    next(err);
+  }
+});
+
+router.put('/auctions', (req, res, next) => {
+  // We'll spit the data back out for now until we setup the controller
+  const { id } = req.body;
+  try {
+    db.Auction.find({ id }).then((dbData) => {
+      const { _id } = dbData[0];
+      debug(dbData);
+      const currentCount = dbData[0].views + 1;
+      db.Auction.update({ _id }, { $set: { views: currentCount } }).then((data) => {
+        res.json(
+          {
+            message: 'This should return all the auctions data from the post',
+            data,
+          },
+        );
+      });
+    });
+  } catch (err) {
+    debug(err.message);
     next(err);
   }
 });
