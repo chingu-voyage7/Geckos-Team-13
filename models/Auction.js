@@ -19,6 +19,21 @@ const AuctionSchema = new Schema({
     type: String,
     required: true,
   },
+  startingDate: {
+    type: Date,
+    required: true,
+  },
+  endOfAuction: {
+    type: Date,
+    required: true,
+  },
+  minimumBid: {
+    type: Number,
+  },
+  views: {
+    type: Number,
+    default: 0,
+  },
   images: {
     type: [String],
   },
