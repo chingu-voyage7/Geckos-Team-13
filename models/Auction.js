@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const { Schema } = mongoose;
 
 const AuctionSchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-  },
   userID: {
     type: String,
     required: true,
@@ -38,6 +35,8 @@ const AuctionSchema = new Schema({
     type: [String],
   },
 });
+
+AuctionSchema.plugin(AutoIncrement, { inc_field: 'ID' });
 
 // Init the User model schema
 const Auction = mongoose.model('Auction', AuctionSchema);
