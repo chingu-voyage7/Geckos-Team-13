@@ -12,15 +12,19 @@ class CurrentAuction extends Component {
 
   render() {
     return (
+      <div>
+      <h2>Current Auctions</h2>    
+      <hr/>  
       <ul className="list-inline">
-        {this.props.currentAuctionsList.map(card => {
+        {this.props.currentAuctionsList.map(auction => {
           return (
             <li className="list-inline-item">
-              <AuctionCard currentAuctions={card} />
+              <AuctionCard currentAuctions={auction} />
             </li>
           );
         })}
       </ul>
+      </div>
     );
   }
 }
