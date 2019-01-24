@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Navigation } from "./Components/Navigation/";
 import { Footer } from "./Components/Footer/";
 import axios from "axios";
-
+import { Route, Switch } from "react-router-dom";
 import CurrentAuctionList from "./Components/CurrentAuctions/CurrentActions";
+import AuctionDetail from "./Components/AuctionDetail/AuctionDetail";
 
 let currentAuctionList = [
   {
@@ -53,17 +54,14 @@ class App extends Component {
     });
   }
 
+  
   render() {
     return (
       <div className="App">
         <Navigation user={this.state.user} />
-        <div className="container-fluid">
-          <h4>Current Auctions</h4>
-          <header className="App-header">
-            <CurrentAuctionList
-              currentAuctionsList={this.state.currentAuctionsList}
-            />
-          </header>
+        <div className="container-fluid">         
+             <Route path = "/" exact render = {() => <CurrentAuctionList currentAuctionsList={this.state.currentAuctionsList} />}/>
+             <Route path = "/auction/:id" exact component = {AuctionDetail} />          
         </div>
         <Footer />
       </div>

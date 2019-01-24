@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Router,Link } from "react-router-dom";
-class AuctionCard extends Component {
+import { Link } from "react-router-dom";
+class AuctionData extends Component {
   constructor(props) {
     super(props);
     // We'll remove this once we start getting some data in the component
-    if (!props) {
+    
       this.state = {
         id: "99999",
         title: "iPhone X",
@@ -14,25 +14,26 @@ class AuctionCard extends Component {
         currentBid: "$999.99",
         countdown: "1:30"
       };
-    } else {
-      this.state = props.currentAuctions;
-    }
+    
   }
 
   render() {
     return (
       
-      <div className="card text-center">
-        <img src={this.state.image} alt={this.state.title} />
-        <div className="card-header">Featured</div>
+      <div className="card text-center"> 
+          
+      <hr/>
         <div className="card-body">
           <h5 className="card-title">{this.state.title}</h5>
-          <p className="card-text">{this.state.description}</p>
-          <Link to={`/auction/${this.state.id}`} className="btn btn-primary">
-            Bid Now
-          </Link>
+          <p className="card-text">Description: {this.state.description}</p>
+          <p className="card-text">Current Bid: {this.state.currentBid}</p>
+          <p className="card-text">Minimun Bid: {this.state.currentBid}</p>
+          <div class="input-group">
+             <input type="text" class="form-control" placeholder="Input your bid" aria-label="Input your bid" aria-describedby="btnGroupAddon2" />
+             <Link to ="/" className = "btn btn-success">Place Bid</Link>
+            </div>
         </div>
-        <div className="card-footer text-muted">{this.state.countdown}</div>
+  
       </div>
      
     );
@@ -43,4 +44,4 @@ class AuctionCard extends Component {
   }
 }
 
-export default AuctionCard;
+export default AuctionData;
