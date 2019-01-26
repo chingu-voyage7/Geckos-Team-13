@@ -9,14 +9,27 @@ const router = express.Router();
 
 /* GET Auctions, this is an unsecured endpoint */
 router.get('/auctions', (req, res, next) => {
-  try {
-    db.Auction.find().then((dbData) => {
-      res.json(
-        { data: dbData },
-      );
-    });
-  } catch (err) {
-    next(err);
+  if (req.query.id) {
+    try {
+      const { id } = req.query;
+      db.Auction.find(id).then((dbData) => {
+        res.json(
+          { data: dbData },
+        );
+      });
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    try {
+      db.Auction.find().then((dbData) => {
+        res.json(
+          { data: dbData },
+        );
+      });
+    } catch (err) {
+      next(err);
+    }
   }
 });
 /* This will populate some auction cards */
