@@ -18,7 +18,7 @@ require('dotenv').config();
 // Import route files
 const userInViews = require('./lib/middleware/userInViews');
 const authRouter = require('./routes/auth');
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const auctionsRouter = require('./routes/auctions');
 
@@ -73,7 +73,13 @@ if (app.get('env') === 'production') {
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.use(flash());
 
 // Handle auth failure error messages
@@ -90,7 +96,7 @@ app.use((req, res, next) => {
 // root routes (can remove index, once we get react stood up)
 app.use(userInViews());
 app.use('/', authRouter);
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', auctionsRouter);
 
