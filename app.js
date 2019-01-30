@@ -76,10 +76,6 @@ app.use(passport.session());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(`${__dirname}build/index.html`));
-});
-
 app.use(flash());
 
 // Handle auth failure error messages
@@ -99,6 +95,10 @@ app.use('/', authRouter);
 // app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', auctionsRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(`${__dirname}build/index.html`));
+});
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
