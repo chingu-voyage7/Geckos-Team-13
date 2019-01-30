@@ -2,7 +2,7 @@
   "name": "EasyAuction",
   "version": "0.0.1",
   "engines": {
-    "node": "10.15.1"
+    "node": "8.11.3"
   },
   "private": true,
   "scripts": {
