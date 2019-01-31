@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./AuctionCard.css";
+import Countdown from "../Countdown/Countdown";
 class AuctionCard extends Component {
   constructor(props) {
     super(props);
     // We'll remove this once we start getting some data in the component
     this.state = props.currentAuctions;
+    //console.log(this.state);
   }
 
   render() {
     return (
-      <div className="card border-light mb-3 shadow p-3 mb-5 bg-white">
+      <div className="zoom card border-light mb-3 shadow p-3 mb-5 bg-white">
         <Link to={`/auction/${this.state.id}`}>
-          <img
-            className="card-img-top"
-            src={this.state.image}
-            alt={this.state.title}
-          />
+          <img src={this.state.image} alt={this.state.title} />
         </Link>
 
         <div className="card-header ">
@@ -33,10 +32,12 @@ class AuctionCard extends Component {
           </Link>
         </div>
         <div className="card-footer text-muted">
-          <p className="float-left font-weight-bold">{this.state.currentBid}</p>{" "}
-          <p className="float-right font-weight-bold">
-            {this.state.countdown} remaining
-          </p>
+          <span className="float-left font-weight-bold">
+            {this.state.currentBid}
+          </span>{" "}
+          <span className="float-right font-weight-bold">
+            <Countdown date={this.state.endOfDate} />
+          </span>
         </div>
       </div>
     );

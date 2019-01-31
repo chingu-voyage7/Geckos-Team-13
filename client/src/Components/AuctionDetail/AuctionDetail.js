@@ -3,16 +3,25 @@ import { Link } from "react-router-dom";
 import AuctionData from "../AuctionData/AuctionData";
 import AuctionCarousel from "../AuctionCarousel/AuctionCarousel";
 import api from "../../api/api";
+
 class AuctionDetail extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      auctionDetail: null
+    };
   }
 
-  componentDidMount() {
+  componentWillUpdate() {
     const {
       match: { params }
     } = this.props;
-    console.log(api.auctions.getById(params.id));
+    api.auctions
+      .getById(params.id)
+      .then(res => {
+        this.setState({ auctionDetail: res.data });
+      })
+      .catch(error => error);
   }
 
   render() {
@@ -35,7 +44,7 @@ class AuctionDetail extends Component {
             <AuctionCarousel />
           </div>
           <div className="col-sm-6">
-            <AuctionData />
+            <AuctionData date={this.state} />
           </div>
         </div>
       </div>

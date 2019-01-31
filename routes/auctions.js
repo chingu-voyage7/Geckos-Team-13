@@ -8,31 +8,24 @@ const secured = require("../lib/middleware/secured");
 const router = express.Router();
 
 /* GET Auction, this is an unsecured endpoint */
-router.get("/auction/:id", (req, res, next) => {
-  if (req.params.id) {
+router.get("/auctions", (req, res, next) => {
+  if (req.query.id) {
     try {
-      const { auctionId } = req.params.id;
-      console.log(auctionId);
-      db.Auction.find(auctionId).then(dbData => {
+      const { id } = req.query;
+      db.Auction.find(id).then(dbData => {
         res.json({ data: dbData });
       });
     } catch (err) {
       next(err);
     }
   } else {
-    res.json({ error: "ID not found!" });
-  }
-});
-/**
- * Get all auctions
- */
-router.get("/auctions", (req, res, next) => {
-  try {
-    db.Auction.find().then(dbData => {
-      res.json({ data: dbData });
-    });
-  } catch (err) {
-    next(err);
+    try {
+      db.Auction.find().then(dbData => {
+        res.json({ data: dbData });
+      });
+    } catch (err) {
+      next(err);
+    }
   }
 });
 /* This will populate some auction cards */
