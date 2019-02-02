@@ -16,10 +16,12 @@ class FeaturedAuctions extends Component {
         <br />
         <h2>Featured Auctions</h2>
         <hr />
-        <div className="card-columns">
-          {this.props.featuredAuctionList.map((auction, index) => {
-            return <AuctionCard key={index} currentAuctions={auction} />;
-          })}
+        <div className="container">
+          <div className="card-columns">
+            {this.props.featuredAuctionList.map((auction, index) => {
+              return <AuctionCard key={index} currentAuctions={auction} />;
+            })}
+          </div>
         </div>
       </div>
     );

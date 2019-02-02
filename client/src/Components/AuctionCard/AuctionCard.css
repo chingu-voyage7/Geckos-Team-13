@@ -1,8 +1,9 @@
 .zoom {
-  transition: transform 0.2s;
-  border: solid 1px crimson;
+  transition: transform 0.6s;
+  border: solid 3px darkblue;
   margin: 0;
 }
-.zoom:hover {
+.zoom.card:hover {
   transform: scale(1.1);
+  border-top: solid 3px darkblue;
 }

@@ -42,10 +42,6 @@ class AuctionCard extends Component {
       </div>
     );
   }
-
-  componentDidMount() {
-    this.setState({ someKey: "otherValue" });
-  }
 }
 
 export default AuctionCard;

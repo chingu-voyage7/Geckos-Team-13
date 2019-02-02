@@ -64,7 +64,7 @@ export default {
       return featuredAuctionList;
     },
     getById: id => {
-      return axios.get("/auctions/", { id }).then(({ data }) => data);
+      return axios.get("/auctions/", { id }).then(data => data);
     }
   }
 };
