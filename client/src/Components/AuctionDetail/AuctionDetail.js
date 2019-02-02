@@ -9,7 +9,8 @@ class AuctionDetail extends Component {
     super(props);
 
     this.state = {
-      auctionDetail: {}
+      auctionDetail: {},
+      bid: 0
     };
   }
 
@@ -26,6 +27,10 @@ class AuctionDetail extends Component {
 
     this.setState({ auctionDetail: res.data.data[0] });
     console.log(this.state);
+  }
+
+  placeBid() {
+    console.log(this.state.bid);
   }
 
   render() {
@@ -48,7 +53,11 @@ class AuctionDetail extends Component {
             <AuctionCarousel />
           </div>
           <div className="col-sm-6">
-            <AuctionData auction={this.state.auctionDetail} />
+            <AuctionData
+              auction={this.state.auctionDetail}
+              onClick={() => this.placeBid()}
+              change={e => this.setState({ bid: e.target.value })}
+            />
           </div>
         </div>
       </div>
