@@ -8,7 +8,7 @@ const passport = require('passport');
 router.get('/login', passport.authenticate('auth0', {
   scope: 'openid email profile',
 }), (req, res) => {
-  res.redirect('/');
+  res.redirect('*');
 });
 
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
