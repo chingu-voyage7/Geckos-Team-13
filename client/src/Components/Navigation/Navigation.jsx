@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 const style = {
-  verticalAlign: "middle",
+  verticalAlign: "right",
   width: "50px",
   height: "50px",
   borderRadius: " 50%"
@@ -30,6 +31,13 @@ class Navigation extends Component {
         </a>
         {this.props.user ? (
           <form className="form-inline">
+            <Link
+              to="/add-auction"
+              className="btn btn-outline-warning my-2 my-sm-0"
+            >
+              Add Auction
+            </Link>
+
             <a
               href="/userauctions"
               className="btn btn-outline-success my-2 my-sm-0"

@@ -11,7 +11,8 @@
     "test": "jest && react-scripts test --env=jsdom",
     "build": "cd client && yarn install && yarn build && mv build ../",
     "heroku-postbuild": "yarn run build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "acorn": "^6.0.4",
@@ -22,6 +23,8 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
+    "eslint": "^5.13.0",
+    "eslint-plugin-flowtype": "^3.2.1",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
