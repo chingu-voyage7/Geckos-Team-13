@@ -7,7 +7,7 @@ const secured = require('../lib/middleware/secured');
 
 const router = express.Router();
 
-/* GET Auction, this is an unsecured endpoint */
+/* GET Auctions, this is an unsecured endpoint */
 router.get('/auctions', (req, res, next) => {
   if (req.query.id) {
     try {
