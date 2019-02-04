@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation user={this.state.user} />
-        <div className="container-fluid">
+        <div className="container">
           <Route
             path="/"
             exact

@@ -7,21 +7,30 @@ import api from "../../api/api";
 class AuctionDetail extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      auctionDetail: null
+      auctionDetail: {},
+      bid: 0
     };
   }
 
-  componentWillUpdate() {
+  componentDidMount() {
+    this.getAuctionDetail();
+  }
+
+  //Get auction detail
+  async getAuctionDetail() {
     const {
       match: { params }
     } = this.props;
-    api.auctions
-      .getById(params.id)
-      .then(res => {
-        this.setState({ auctionDetail: res.data });
-      })
-      .catch(error => error);
+    const res = await api.auctions.getById(params.id);
+
+    this.setState({ auctionDetail: res.data.data[0] });
+    console.log(this.state);
+  }
+
+  placeBid() {
+    console.log(this.state.bid);
   }
 
   render() {
@@ -44,7 +53,11 @@ class AuctionDetail extends Component {
             <AuctionCarousel />
           </div>
           <div className="col-sm-6">
-            <AuctionData date={this.state} />
+            <AuctionData
+              auction={this.state.auctionDetail}
+              onClick={() => this.placeBid()}
+              change={e => this.setState({ bid: e.target.value })}
+            />
           </div>
         </div>
       </div>
