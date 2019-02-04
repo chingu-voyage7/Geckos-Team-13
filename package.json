@@ -9,7 +9,7 @@
     "start": "node ./bin/www",
     "dev": "concurrently \"DEBUG=express:* nodemon ./bin/www\" \"cd client && yarn start\"",
     "test": "jest && react-scripts test --env=jsdom",
-    "build": "cd client && npm cache clean --force && npm install && npm run build && mv build ../",
+    "build": "cd client && npm install terser --save-dev && npm install && npm run build && mv build ../",
     "heroku-postbuild": "yarn run build",
     "eject": "react-scripts eject",
     "lint": "eslint . --fix"
