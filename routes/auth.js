@@ -8,7 +8,7 @@ const passport = require('passport');
 router.get('/login', passport.authenticate('auth0', {
   scope: 'openid email profile',
 }), (req, res) => {
-  res.redirect('/user');
+  res.redirect('/');
 });
 
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
@@ -21,7 +21,7 @@ router.get('/callback', (req, res, next) => {
       if (loginErr) { return next(loginErr); }
       const { returnTo } = req.session;
       delete req.session.returnTo;
-      return res.redirect(returnTo || '/user');
+      return res.redirect(returnTo || '/');
     });
   })(req, res, next);
 });
