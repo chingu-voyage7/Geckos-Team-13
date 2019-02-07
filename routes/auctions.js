@@ -13,9 +13,7 @@ router.get('/auctions', (req, res, next) => {
     try {
       const { id } = req.query;
       db.Auction.find(id).then((dbData) => {
-        res.json(
-          { data: dbData },
-        );
+        res.json({ data: dbData });
       });
     } catch (err) {
       next(err);
@@ -23,9 +21,7 @@ router.get('/auctions', (req, res, next) => {
   } else {
     try {
       db.Auction.find().then((dbData) => {
-        res.json(
-          { data: dbData },
-        );
+        res.json({ data: dbData });
       });
     } catch (err) {
       next(err);
@@ -38,9 +34,7 @@ router.get('/myauctions', secured(), (req, res, next) => {
   try {
     const { _raw, _json, ...userProfile } = req.user;
     db.Auction.find({ userID: userProfile.id }).then((dbData) => {
-      res.json(
-        { data: dbData },
-      );
+      res.json({ data: dbData });
     });
   } catch (err) {
     next(err);
@@ -69,12 +63,10 @@ router.post('/auctions', secured(), (req, res, next) => {
   debug(formData);
   try {
     db.Auction.create({ formData }).then((dbData) => {
-      res.json(
-        {
-          message: 'This should return all the auctions data from the post',
-          data: dbData,
-        },
-      );
+      res.json({
+        message: 'This should return all the auctions data from the post',
+        data: dbData,
+      });
     });
   } catch (err) {
     debug(err.message);
@@ -90,14 +82,14 @@ router.put('/auctions', (req, res, next) => {
       const { _id } = dbData[0];
       debug(dbData);
       const currentCount = dbData[0].views + 1;
-      db.Auction.update({ _id }, { $set: { views: currentCount } }).then((data) => {
-        res.json(
-          {
+      db.Auction.update({ _id }, { $set: { views: currentCount } }).then(
+        (data) => {
+          res.json({
             message: 'This should return all the auctions data from the post',
             data,
-          },
-        );
-      });
+          });
+        },
+      );
     });
   } catch (err) {
     debug(err.message);
