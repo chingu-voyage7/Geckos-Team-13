@@ -12,7 +12,8 @@ router.get("/auctions", (req, res, next) => {
   if (req.query.id) {
     try {
       const { id } = req.query;
-      db.Auction.find(id).then(dbData => {
+      console.log("Rest:", req.query);
+      db.Auction.find({ id }).then(dbData => {
         res.json({ data: dbData });
       });
     } catch (err) {
@@ -42,7 +43,7 @@ router.get("/myauctions", secured(), (req, res, next) => {
 });
 /* This endpoint should be secured */
 /* POST a new auction for a User's auction */
-router.post("/auctions", secured(), (req, res, next) => {
+router.post("/auction", (req, res, next) => {
   // We'll spit the data back out for now until we setup the controller
   const {
     title,
@@ -50,7 +51,8 @@ router.post("/auctions", secured(), (req, res, next) => {
     startingDate,
     endOfAuction,
     minimumBid
-  } = req.body;
+  } = req.body.data;
+
   const userID = req.user.id;
   const formData = {
     userID,
@@ -60,9 +62,8 @@ router.post("/auctions", secured(), (req, res, next) => {
     endOfAuction,
     minimumBid
   };
-  debug(formData);
   try {
-    db.Auction.create({ formData }).then(dbData => {
+    db.Auction.create(formData).then(dbData => {
       res.json({
         message: "This should return all the auctions data from the post",
         data: dbData

@@ -1,46 +1,46 @@
-const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const { Schema } = mongoose;
 
 const AuctionSchema = new Schema({
   userID: {
     type: String,
-    required: true,
+    required: true
   },
   title: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   startingDate: {
     type: Date,
-    required: true,
+    required: true
   },
   endOfAuction: {
     type: Date,
-    required: true,
+    required: true
   },
   minimumBid: {
-    type: Number,
+    type: Number
   },
   views: {
     type: Number,
-    default: 0,
+    default: 0
   },
   images: {
-    type: [String],
-  },
+    type: [String]
+  }
 });
 
-AuctionSchema.plugin(AutoIncrement, { inc_field: 'ID' });
+AuctionSchema.plugin(AutoIncrement, { inc_field: "id" });
 
 // Init the User model schema
-const Auction = mongoose.model('Auction', AuctionSchema);
+const Auction = mongoose.model("Auction", AuctionSchema);
 
 module.exports = {
-  Auction,
+  Auction
 };

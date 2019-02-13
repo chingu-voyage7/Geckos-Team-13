@@ -61,10 +61,13 @@ export default {
           endOfDate: "2019-02-03"
         }
       ];
-      return featuredAuctionList;
+      return axios.get("/auctions/").then(data => data.data);
     },
     getById: id => {
-      return axios.get("/auctions/", { id }).then(data => data);
+      return axios.get(`/auctions/?id=${id}`).then(data => data);
+    },
+    addAuction: (data, user) => {
+      return axios.post("/auction", { data, user }).then(res => res);
     }
   }
 };
