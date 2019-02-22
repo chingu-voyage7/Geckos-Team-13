@@ -67,7 +67,9 @@ export default {
       return axios.get(`/auctions/?id=${id}`).then(data => data);
     },
     addAuction: (data, user) => {
-      return axios.post("/auction", { data, user }).then(res => res);
+      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      console.log(data.get("title"));
+      return axios.post("/auction", { data, user }, config).then(res => res);
     }
   }
 };
