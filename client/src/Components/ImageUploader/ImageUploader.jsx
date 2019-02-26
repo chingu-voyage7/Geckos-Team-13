@@ -17,7 +17,7 @@ export const ImageUploader = props => (
       <input
         onChange={e => props.uploadImages(e)}
         type="file"
-        name="photos"
+        name="images"
         multiple
       />
     </div>

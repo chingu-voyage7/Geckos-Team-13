@@ -1,4 +1,8 @@
 import React from "react";
+const imgStyle = {
+  maxWidth: "100%",
+  maxHeight: "100%"
+};
 const AuctionCarousel = props => {
   return (
     <div
@@ -10,23 +14,10 @@ const AuctionCarousel = props => {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
+            style={imgStyle}
             className="d-block w-30"
-            src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6009/6009875_sd.jpg;maxHeight=300;maxWidth=300"
-            alt="First slide"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            className="d-block w-30"
-            src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6009/6009875_sd.jpg;maxHeight=300;maxWidth=300"
-            alt="Second slide"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            className="d-block w-30"
-            src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6009/6009875_sd.jpg;maxHeight=300;maxWidth=300"
-            alt="Third slide"
+            src={props.images}
+            alt="slide"
           />
         </div>
       </div>

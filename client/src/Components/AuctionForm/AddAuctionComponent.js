@@ -22,14 +22,18 @@ class AddAuction extends Component {
     const user = this.props;
 
     let formData = new FormData();
+    this.state.images.forEach((file, i) => {
+      formData.append("images", file);
+    });
     //formData.append("images", this.state.images);
     formData.append("title", this.state.title);
     formData.append("description", this.state.description);
     formData.append("startingDate", this.state.startingDate);
     formData.append("endOfAuction", this.state.endOfAuction);
     formData.append("minimumBid", this.state.minimumBid);
+    formData.append("user", user.user);
 
-    const res = Api.auctions.addAuction(formData, user.user);
+    const res = Api.auctions.addAuction(formData);
     res.then(r => {
       console.log(r);
     });
@@ -40,24 +44,8 @@ class AddAuction extends Component {
   }
 
   handleImageUploadChange(e) {
-    const user = this.props;
     const photos = Array.from(e.target.files);
-    let formData = new FormData();
-    photos.forEach((file, i) => {
-      console.log(i);
-      formData.append("photos", file);
-    });
-
-    fetch("http://localhost:3001/auction", {
-      method: "POST",
-      body: formData
-    })
-      .then(res => res.json())
-      .then(r => {
-        console.log(r);
-      })
-      .catch(error => console.log(error));
-    // this.setState({ images: e.target.files });
+    this.setState({ images: photos });
   }
 
   render() {
