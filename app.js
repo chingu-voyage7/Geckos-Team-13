@@ -5,12 +5,14 @@ const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
+const parser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 const flash = require("connect-flash");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary");
 // Load ENV variables
 require("dotenv").config();
 
@@ -41,6 +43,13 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+//Configure Cloudinary to upload auction's photos
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 const app = express();
 
 app.use(cors());
@@ -53,6 +62,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Parsing the requests
+app.use(parser.json());
+app.use(parser.urlencoded({ urlencoded: true }));
 
 // express-session setup
 const sess = {

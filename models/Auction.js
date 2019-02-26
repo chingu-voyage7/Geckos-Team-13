@@ -32,7 +32,7 @@ const AuctionSchema = new Schema({
     default: 0
   },
   images: {
-    type: [String]
+    type: String
   }
 });
 

@@ -2,6 +2,7 @@ const express = require("express");
 const debug = require("debug");
 const db = require("../models/Auction");
 const secured = require("../lib/middleware/secured");
+const cloudinary = require("cloudinary");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -52,19 +53,46 @@ router.get("/myauctions", secured(), (req, res, next) => {
 });
 /* This endpoint should be secured */
 /* POST a new auction for a User's auction */
-router.post("/auction", upload.array("photos", 3), (req, res, next) => {
+router.post("/auction", upload.array("images", 3), (req, res, next) => {
   // We'll spit the data back out for now until we setup the controller
-  /*const {
+  const {
     title,
     description,
     startingDate,
     endOfAuction,
-    minimumBid,
-    photos
-  } = req.body.data;*/
+    minimumBid
+  } = req.body;
+  const userID = req.user.id;
+  const photos = req.files;
+  //Store the images in Cloudinary platform
+  const promises = photos.map(image => cloudinary.uploader.upload(image.path));
 
-  //const image = fs.readFileSync()
-  console.log(req.files);
+  //Traverse promises
+  Promise.all(promises).then(image => {
+    const formData = {
+      userID,
+      title,
+      description,
+      startingDate,
+      endOfAuction,
+      minimumBid,
+      images: image[0].url
+    };
+    console.log(formData);
+    //debug(formData);
+    try {
+      db.Auction.create(formData).then(dbData => {
+        res.json({
+          message: "This should return all the auctions data from the post",
+          data: dbData
+        });
+      });
+    } catch (err) {
+      //debug(err.message);
+      console.log(err.message);
+      next(err);
+    }
+  });
 });
 
 router.put("/auctions", (req, res, next) => {
