@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./AuctionCard.css";
 import Countdown from "../Countdown/Countdown";
+const imgStyle = {
+  maxWidth: "100%",
+  maxHeight: "100%"
+};
 class AuctionCard extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +18,11 @@ class AuctionCard extends Component {
     return (
       <div className="zoom card border-light mb-3 shadow p-3 mb-5 bg-white">
         <Link to={`/auction/${this.state.id}`}>
-          <img src={this.state.image} alt={this.state.title} />
+          <img
+            style={imgStyle}
+            src={this.state.images}
+            alt={this.state.title}
+          />
         </Link>
 
         <div className="card-header ">

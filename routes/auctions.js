@@ -1,8 +1,19 @@
-const express = require('express');
-const debug = require('debug');
-const db = require('../models/Auction');
-const secured = require('../lib/middleware/secured');
-
+const express = require("express");
+const debug = require("debug");
+const db = require("../models/Auction");
+const secured = require("../lib/middleware/secured");
+const cloudinary = require("cloudinary");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now());
+  }
+});
+const upload = multer({ storage });
+const fs = require("fs");
 // TODO - Import Data controller for auctions
 
 const router = express.Router();
@@ -12,7 +23,7 @@ router.get('/auctions', (req, res, next) => {
   if (req.query.id) {
     try {
       const { id } = req.query;
-      db.Auction.find(id).then((dbData) => {
+      db.Auction.find({ id }).then(dbData => {
         res.json({ data: dbData });
       });
     } catch (err) {
@@ -42,7 +53,7 @@ router.get('/myauctions', secured(), (req, res, next) => {
 });
 /* This endpoint should be secured */
 /* POST a new auction for a User's auction */
-router.post('/auctions', secured(), (req, res, next) => {
+router.post("/auction", upload.array("images", 3), (req, res, next) => {
   // We'll spit the data back out for now until we setup the controller
   const {
     title,
@@ -52,26 +63,36 @@ router.post('/auctions', secured(), (req, res, next) => {
     minimumBid,
   } = req.body;
   const userID = req.user.id;
-  const formData = {
-    userID,
-    title,
-    description,
-    startingDate,
-    endOfAuction,
-    minimumBid,
-  };
-  debug(formData);
-  try {
-    db.Auction.create({ formData }).then((dbData) => {
-      res.json({
-        message: 'This should return all the auctions data from the post',
-        data: dbData,
+  const photos = req.files;
+  //Store the images in Cloudinary platform
+  const promises = photos.map(image => cloudinary.uploader.upload(image.path));
+
+  //Traverse promises
+  Promise.all(promises).then(image => {
+    const formData = {
+      userID,
+      title,
+      description,
+      startingDate,
+      endOfAuction,
+      minimumBid,
+      images: image[0].url
+    };
+    console.log(formData);
+    //debug(formData);
+    try {
+      db.Auction.create(formData).then(dbData => {
+        res.json({
+          message: "This should return all the auctions data from the post",
+          data: dbData
+        });
       });
-    });
-  } catch (err) {
-    debug(err.message);
-    next(err);
-  }
+    } catch (err) {
+      //debug(err.message);
+      console.log(err.message);
+      next(err);
+    }
+  });
 });
 
 router.put('/auctions', (req, res, next) => {

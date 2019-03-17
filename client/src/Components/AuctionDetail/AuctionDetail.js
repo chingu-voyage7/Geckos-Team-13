@@ -24,9 +24,7 @@ class AuctionDetail extends Component {
       match: { params }
     } = this.props;
     const res = await api.auctions.getById(params.id);
-
     this.setState({ auctionDetail: res.data.data[0] });
-    console.log(this.state);
   }
 
   placeBid() {
@@ -50,7 +48,7 @@ class AuctionDetail extends Component {
         </nav>
         <div className="row">
           <div className="col-sm-6">
-            <AuctionCarousel />
+            <AuctionCarousel images={this.state.auctionDetail.images} />
           </div>
           <div className="col-sm-6">
             <AuctionData

@@ -1,0 +1,23 @@
+input[type="file"] {
+  opacity: 0;
+  position: absolute;
+}
+.custom-card {
+  background-color: #f3f3f3;
+  width: 30em;
+  opacity: 0.8;
+  border: 2px dotted #5c5c5c;
+  cursor: pointer;
+}
+.custom-card:hover {
+  border: 3px solid rgb(231, 1, 70);
+}
+
+.auction-image {
+  opacity: 0.3;
+}
+
+.custom-card:hover .uploaderTitle {
+  font-weight: bold;
+  color: rgb(231, 1, 70);
+}

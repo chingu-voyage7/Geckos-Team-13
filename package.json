@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "acorn": "^6.0.4",
-    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.13.2",
     "concurrently": "^4.1.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
@@ -32,6 +33,7 @@
     "mongoose": "^5.3.15",
     "mongoose-sequence": "^4.0.1",
     "morgan": "~1.9.0",
+    "multer": "^1.4.1",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
     "pug": "^2.0.3",
