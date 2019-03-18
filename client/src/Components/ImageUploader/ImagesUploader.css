@@ -1,5 +1,4 @@
 input[type="file"] {
-  opacity: 0;
   position: absolute;
 }
 .custom-card {
@@ -20,4 +19,15 @@ input[type="file"] {
 .custom-card:hover .uploaderTitle {
   font-weight: bold;
   color: rgb(231, 1, 70);
+}
+
+.container-preview {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.imgPrev{
+  border: 2px dotted #5c5c5c;
+  width: 50%;
+ 
 }

@@ -17,7 +17,7 @@ const AddAuctionForm = ({ onClick, change, uploadImages,isUploading,images }) =>
         images.length > 0 ? (
          <ImagesPreview images = {images} uploadImages = {e => uploadImages(e)}/>
         ) :
-        <ImageUploader uploadImages={e => uploadImages(e)} />
+        <ImageUploader inputMedium={true} uploadImages={e => uploadImages(e)} />
         }
       </div>
       <div className="form-group">

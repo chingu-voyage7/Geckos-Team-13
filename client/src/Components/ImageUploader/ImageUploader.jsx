@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages } from "@fortawesome/free-solid-svg-icons";
 import "./ImagesUploader.css";
 export const ImageUploader = props => (
+  props.inputMedium ? (
     <div className = "col-md-9">
        <div className = "col-md-12">
             <div className="card custom-card" size="2x">
@@ -20,11 +21,19 @@ export const ImageUploader = props => (
                         onChange={e => props.uploadImages(e)}
                         type="file"
                         name="images"
-                        multiple
+                        
                       />
                     </div>
               </div>
               </div>
         </div>
+  ):(
+    <div className="imgPrev"> <input
+    onChange={e => props.uploadImages(e)}
+    type="file"
+    name="images"
+    
+  /></div>
+  )
   
 );
