@@ -44,18 +44,28 @@ class AddAuction extends Component {
   }
 
   handleImageUploadChange(e) {
-    const photos = Array.from(e.target.files);
-    this.setState({ images: photos });
+    this.setState({uploading : true});
+    const photos = Array.from(e.target.files[0]);
+    const photosArr = [];
+ 
+      photosArr.push(URL.createObjectURL(e.target.files[0]))
+      this.state.images.push(photosArr);  
+    //this.setState({ images: photosArr });
+    this.setState({uploading : false});
   }
 
   render() {
-    console.log(this.state);
+    const {images,uploading} = this.state;
+    console.log(images);
     return (
       <div>
         <AddAuctionForm
           onClick={e => this.handlerClick(e)}
           change={e => this.onChange(e)}
           uploadImages={e => this.handleImageUploadChange(e)}
+          isUploading ={uploading}
+          images={images}
+          
         />
       </div>
     );

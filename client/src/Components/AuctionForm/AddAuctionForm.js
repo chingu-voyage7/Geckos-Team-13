@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageUploader } from "../ImageUploader/ImageUploader";
-
-const AddAuctionForm = ({ onClick, change, uploadImages }) => (
+import  ImagesPreview  from "../ImageUploader/ImagesPreview";
+const AddAuctionForm = ({ onClick, change, uploadImages,isUploading,images }) => (
   <div>
     <form
       onSubmit={e => onClick(e)}
@@ -11,7 +11,14 @@ const AddAuctionForm = ({ onClick, change, uploadImages }) => (
       <div className="form-group">
         <h2>What are you auctioning?</h2>
         <label>Photos</label>
+        {isUploading ? (
+          <div>Loading...</div>
+        ) :
+        images.length > 0 ? (
+         <ImagesPreview images = {images} uploadImages = {e => uploadImages(e)}/>
+        ) :
         <ImageUploader uploadImages={e => uploadImages(e)} />
+        }
       </div>
       <div className="form-group">
         <label>Title</label>

@@ -4,7 +4,7 @@ input[type="file"] {
 }
 .custom-card {
   background-color: #f3f3f3;
-  width: 30em;
+  width: 25em;
   opacity: 0.8;
   border: 2px dotted #5c5c5c;
   cursor: pointer;
