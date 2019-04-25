@@ -9,8 +9,8 @@
     "start": "node ./bin/www",
     "dev": "concurrently \"DEBUG=express:* nodemon ./bin/www\" \"cd client && yarn start\"",
     "test": "jest && react-scripts test --env=jsdom",
-    "build": "cd client && yarn install && yarn build && mv build ../",
-    "heroku-postbuild": "yarn run build",
+    "build": "cd client && npm install && npm run build && mv build ../",
+    "heroku-postbuild": "",
     "eject": "react-scripts eject",
     "lint": "eslint . --fix"
   },
